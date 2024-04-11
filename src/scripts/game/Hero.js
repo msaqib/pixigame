@@ -42,4 +42,9 @@ export class Hero {
             Matter.Body.setVelocity(this.body, {x: 0, y: -this.dy})
         }
     }
+
+    landOnPlatform(platform) {
+        this.platform = platform
+        this.jumpIndex = 0
+    }
 }
