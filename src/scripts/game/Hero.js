@@ -47,4 +47,9 @@ export class Hero {
         this.platform = platform
         this.jumpIndex = 0
     }
+
+    collectDiamond(diamond) {
+        Matter.World.remove(App.physics.world, diamond.body)
+        diamond.sprite.destroy()
+    }
 }

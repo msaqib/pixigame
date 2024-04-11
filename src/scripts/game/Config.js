@@ -33,5 +33,12 @@ export const Config = {
             }
         },
         moveSpeed: -1.5
+    },
+    diamonds: {
+        chance: 0.4,
+        offset: {
+            min: 100,
+            max: 200
+        }
     }
 }
