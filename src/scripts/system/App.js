@@ -1,6 +1,7 @@
 import * as PIXI from "pixi.js";
 import { Loader } from "./Loader"
 import { ScenesManager } from "./ScenesManager";
+import * as Matter from 'matter-js';
 
 class Application {
     run(config) {
@@ -11,6 +12,7 @@ class Application {
             document.body.appendChild(this.app.canvas);
             this.loader = new Loader(this.config);
             this.loader.preload().then(() => this.start());
+            this.createPhysics()
         }) 
     }
     start() {
@@ -24,6 +26,12 @@ class Application {
 
     sprite(key) {
         return new PIXI.Sprite(this.res(key));
+    }
+
+    createPhysics() {
+        this.physics = Matter.Engine.create()
+        const runner = Matter.Runner.create()
+        Matter.Runner.run(runner, this.physics)
     }
 }
 
