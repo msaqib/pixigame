@@ -47,7 +47,6 @@ export class Platform {
     createBody() {
         this.body = Matter.Bodies.rectangle(this.width / 2 + this.container.x, this.height / 2 + this.container.y, this.width, this.height, {friction: 0, isStatic: true})
         Matter.World.add(App.physics.world, this.body)
-        console.log('Platform is at (', this.body.position.x, ', ', this.body.position.y, ')')
         this.body.gamePlatform = this
     }
 
@@ -75,5 +74,11 @@ export class Platform {
         this.container.addChild(diamond.sprite);
         diamond.createBody()
         this.diamonds.push(diamond);
+    }
+
+    destroy() {
+        Matter.World.remove(App.physics.world, this.body)
+        this.diamonds.forEach((diamond) => diamond.destroy())
+        this.container.destroy()
     }
 }

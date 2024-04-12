@@ -5,6 +5,16 @@ import { Game } from "./Game";
 export const Config = {
     loader: Tools.importAll(require.context('./../../sprites', true, /\.(png|mp3)$/)),
     bgSpeed: 2,
+    score: {
+        x: 10,
+        y: 10,
+        anchor: 0,
+        style: {
+            fontFamily: "Verdana",
+            fontWeight: "bold",
+            fontSize: 44
+        }
+    },
     scenes: {
         "Game": GameScene,
         "startScene": Game

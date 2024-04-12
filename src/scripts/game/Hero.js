@@ -10,6 +10,7 @@ export class Hero {
         this.dy = App.config.hero.jumpSpeed
         this.maxJumps = App.config.hero.maxJumps
         this.jumpIndex = 0
+        this.score = 0
     }
 
     createSprite() {
@@ -27,14 +28,18 @@ export class Hero {
     
     createBody() {
         this.body = Matter.Bodies.rectangle(this.sprite.x + this.sprite.width / 2, this.sprite.y + this.sprite.height / 2, this.sprite.width, this.sprite.height, {friction: 0})
-        console.log('Hero body is at (', this.body.position.x, ', ', this.body.position.y, ')')
         Matter.World.add(App.physics.world, this.body)
         this.body.gameHero = this
     }
 
     update() {
-        this.sprite.x = this.body.position.x - this.sprite.width / 2
-        this.sprite.y = this.body.position.y - this.sprite.height / 2
+        if (this.sprite) {
+            this.sprite.x = this.body.position.x - this.sprite.width / 2
+            this.sprite.y = this.body.position.y - this.sprite.height / 2
+        }     
+        if (this.sprite && (this.sprite.position.y - window.innerHeight > 0.1)) {
+            this.sprite.emit("die");
+        }   
     }
 
     startJump() {
@@ -50,8 +55,19 @@ export class Hero {
     }
 
     collectDiamond(diamond) {
-        Matter.World.remove(App.physics.world, diamond.body)
-        diamond.sprite.destroy()
-        diamond.sprite = null
+        if (this.sprite) {
+            Matter.World.remove(App.physics.world, diamond.body)
+            diamond.sprite.destroy()
+            diamond.sprite = null
+            this.score += 10
+            this.sprite.emit("score")
+        }
+    }
+
+    destroy() {
+        App.app.ticker.remove(this.update, this)
+        Matter.World.remove(App.physics.world, this.body)
+        this.sprite.destroy()
+        this.sprite = null
     }
 }

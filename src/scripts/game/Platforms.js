@@ -7,7 +7,7 @@ export class Platforms {
         this.platforms = [];
         this.container = new PIXI.Container();
         this.createPlatform({
-            rows: 8,
+            rows: 4,
             cols: 10,
             x: 200
         })
@@ -41,7 +41,7 @@ export class Platforms {
     }
 
     destroy() {
-        //this.platforms.forEach(platform => platform.destroy());
-        this.container.destroy();
+        this.platforms.forEach( (platform) => platform.destroy())
+        this.container.destroy()
     }
 }

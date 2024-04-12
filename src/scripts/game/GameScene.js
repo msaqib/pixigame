@@ -4,6 +4,7 @@ import { Platforms } from './Platforms';
 import { Hero } from './Hero';
 import * as Matter from 'matter-js'
 import {App} from '../system/App'
+import { LabelScore } from "./LabelScore";
 
 export class GameScene extends Scene {
     create() {
@@ -11,6 +12,7 @@ export class GameScene extends Scene {
         this.createPlatforms()
         this.createHero()
         this.registerEvents()
+        this.createUI()
     }
 
     registerEvents() {
@@ -22,16 +24,12 @@ export class GameScene extends Scene {
         const hero = colliders.find((body) => body.gameHero)
         const platform = colliders.find((body) => body.gamePlatform)
         const diamond = colliders.find( (body) => body.gameDiamond)
-        console.log(hero, platform, diamond)
-        if (hero && diamond) {
-            console.log(hero.position.x, hero.position.y)
-            console.log(hero.position.x, hero.position.y)
-            this.hero.collectDiamond(diamond.gameDiamond)
-        }
-        else if (hero && platform) {
+        if (hero && platform) {
             this.hero.landOnPlatform(platform)
         }
-        
+        else if (hero && diamond) {
+            this.hero.collectDiamond(diamond.gameDiamond)
+        }
     }
 
     createBackground() {
@@ -57,5 +55,25 @@ export class GameScene extends Scene {
         this.container.on('pointerdown', () => {
             this.hero.startJump()
         })
+        this.hero.sprite.once('die', ()=> {
+            App.scenes.start('Game')
+        })
+    }
+
+    createUI() {
+        this.labelScore = new LabelScore();
+        this.container.addChild(this.labelScore);
+        this.hero.sprite.on("score", () => {
+            this.labelScore.renderScore(this.hero.score);
+        });
+    }
+
+    destroy() {
+        Matter.Events.off(App.physics, 'collisionStart', this.onCollisionStart.bind(this));
+        App.app.ticker.remove(this.update, this);
+        this.hero.destroy()
+        this.bg.destroy();
+        this.platforms.destroy()
+        this.labelScore.destroy()
     }
 }
