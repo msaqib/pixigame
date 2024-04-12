@@ -23,12 +23,15 @@ export class GameScene extends Scene {
         const platform = colliders.find((body) => body.gamePlatform)
         const diamond = colliders.find( (body) => body.gameDiamond)
         console.log(hero, platform, diamond)
-        if (hero && platform) {
-            this.hero.landOnPlatform(platform)
-        }
-        else if (hero && diamond) {
+        if (hero && diamond) {
+            console.log(hero.position.x, hero.position.y)
+            console.log(hero.position.x, hero.position.y)
             this.hero.collectDiamond(diamond.gameDiamond)
         }
+        else if (hero && platform) {
+            this.hero.landOnPlatform(platform)
+        }
+        
     }
 
     createBackground() {

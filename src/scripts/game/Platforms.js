@@ -7,8 +7,8 @@ export class Platforms {
         this.platforms = [];
         this.container = new PIXI.Container();
         this.createPlatform({
-            rows: 4,
-            cols: 6,
+            rows: 8,
+            cols: 10,
             x: 200
         })
         this.ranges = App.config.platforms.ranges;

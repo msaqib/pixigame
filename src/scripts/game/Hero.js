@@ -27,6 +27,7 @@ export class Hero {
     
     createBody() {
         this.body = Matter.Bodies.rectangle(this.sprite.x + this.sprite.width / 2, this.sprite.y + this.sprite.height / 2, this.sprite.width, this.sprite.height, {friction: 0})
+        console.log('Hero body is at (', this.body.position.x, ', ', this.body.position.y, ')')
         Matter.World.add(App.physics.world, this.body)
         this.body.gameHero = this
     }
@@ -51,5 +52,6 @@ export class Hero {
     collectDiamond(diamond) {
         Matter.World.remove(App.physics.world, diamond.body)
         diamond.sprite.destroy()
+        diamond.sprite = null
     }
 }

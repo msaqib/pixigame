@@ -47,6 +47,7 @@ export class Platform {
     createBody() {
         this.body = Matter.Bodies.rectangle(this.width / 2 + this.container.x, this.height / 2 + this.container.y, this.width, this.height, {friction: 0, isStatic: true})
         Matter.World.add(App.physics.world, this.body)
+        console.log('Platform is at (', this.body.position.x, ', ', this.body.position.y, ')')
         this.body.gamePlatform = this
     }
 
@@ -55,14 +56,15 @@ export class Platform {
             Matter.Body.setPosition(this.body, {x: this.body.position.x + this.dx, y: this.body.position.y})
             this.container.x = this.body.position.x - this.width / 2
             this.container.y = this.body.position.y - this.height / 2
+            this.diamonds.forEach( (diamond) => diamond.update())
         }
     }
 
     createDiamonds() {
-        const y = App.config.diamonds.offset.min + Math.random() * (App.config.diamonds.offset.max - App.config.diamonds.offset.min);
 
         for (let i = 0; i < this.cols; i++) {
             if (Math.random() < App.config.diamonds.chance) {
+                const y = App.config.diamonds.offset.min + Math.random() * (App.config.diamonds.offset.max - App.config.diamonds.offset.min);
                 this.createDiamond(this.tileSize * i, -y)
             }
         }

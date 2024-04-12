@@ -11,8 +11,8 @@ export const Config = {
     },
     hero: {
         position: {
-            x: 350,
-            y: 395
+            x: 200,
+            y: 95
         },
         jumpSpeed: 15,
         maxJumps: 2
