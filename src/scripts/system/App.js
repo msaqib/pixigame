@@ -11,6 +11,7 @@ class Application {
         this.app.init({ width: window.innerWidth, height: window.innerHeight }).then(()=> {
             document.body.appendChild(this.app.canvas);
             this.loader = new Loader(this.config);
+            this.soundLoader = new Loader(this.config)
             this.loader.preload().then(() => this.start());
             this.createPhysics()
         }) 

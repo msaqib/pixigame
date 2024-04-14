@@ -5,6 +5,7 @@ import { Hero } from './Hero';
 import * as Matter from 'matter-js'
 import {App} from '../system/App'
 import { LabelScore } from "./LabelScore";
+import * as Tools from '../system/Tools'
 
 export class GameScene extends Scene {
     create() {
@@ -52,9 +53,8 @@ export class GameScene extends Scene {
         this.hero = new Hero();
         this.container.addChild(this.hero.sprite);
         this.container.interactive = true
-        this.container.on('pointerdown', () => {
-            this.hero.startJump()
-        })
+        const up = Tools.Tools.keyboard('ArrowUp')
+        up.press = this.hero.startJump.bind(this.hero)
         this.hero.sprite.once('die', ()=> {
             App.scenes.start('Game')
         })

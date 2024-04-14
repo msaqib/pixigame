@@ -1,6 +1,7 @@
 import * as PIXI from "pixi.js";
 import { App } from '../system/App';
 import * as Matter from 'matter-js'
+import {sound} from '@pixi/sound'
 
 export class Hero {
     constructor() {
@@ -43,9 +44,11 @@ export class Hero {
     }
 
     startJump() {
+        
         if (this.jumpIndex < this.maxJumps) {
             this.jumpIndex++
             Matter.Body.setVelocity(this.body, {x: 0, y: -this.dy})
+            sound.play('jump')
         }
     }
 
@@ -61,6 +64,7 @@ export class Hero {
             diamond.sprite = null
             this.score += 10
             this.sprite.emit("score")
+            sound.play('collect')
         }
     }
 
