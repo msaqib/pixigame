@@ -1,6 +1,7 @@
 import { Tools } from "../system/Tools";
 import { GameScene } from "./GameScene";
 import { Game } from "./Game";
+import { StartScene } from "./StartScene";
 
 export const Config = {
     loader: Tools.importAll(require.context('./../../sprites', true, /\.(png|mp3)$/)),
@@ -17,7 +18,7 @@ export const Config = {
     },
     scenes: {
         "Game": GameScene,
-        "startScene": Game
+        "startScene": StartScene
     },
     hero: {
         position: {
@@ -30,7 +31,7 @@ export const Config = {
     platforms: {
         ranges: {
             rows: {
-                min: 2,
+                min: 3,
                 max: 6
             },
             cols: {
@@ -38,7 +39,7 @@ export const Config = {
                 max: 9
             },
             offset: {
-                min: 60,
+                min: 80,
                 max: 200
             }
         },

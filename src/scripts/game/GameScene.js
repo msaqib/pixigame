@@ -61,7 +61,7 @@ export class GameScene extends Scene {
     }
 
     createUI() {
-        this.labelScore = new LabelScore();
+        this.labelScore = new LabelScore(this.hero.score);
         this.container.addChild(this.labelScore);
         this.hero.sprite.on("score", () => {
             this.labelScore.renderScore(this.hero.score);

@@ -8,6 +8,7 @@ export class Game extends Scene{
         this.container = new PIXI.Container();
         this.createBackground();
     }
+
     createBackground() {
         this.bg = App.sprite("bg");
         

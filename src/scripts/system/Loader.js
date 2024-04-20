@@ -29,7 +29,6 @@ export class Loader {
                     else {
                         this.resources[fileName] = texture; // Store loaded textures
                     }
-                    
                 })
               );
         } catch (error) {

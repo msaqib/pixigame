@@ -8,7 +8,7 @@ class Application {
         this.config = config;
         this.app = new PIXI.Application();
         this.config.stage = this.app.stage;
-        this.app.init({ width: window.innerWidth, height: window.innerHeight }).then(()=> {
+        this.app.init({ width: 800, height: 600 }).then(()=> {
             document.body.appendChild(this.app.canvas);
             this.loader = new Loader(this.config);
             this.soundLoader = new Loader(this.config)
@@ -19,7 +19,7 @@ class Application {
     start() {
         this.scenes = new ScenesManager();
         this.app.stage.addChild(this.scenes.container)
-        this.scenes.start("Game");
+        this.scenes.start("startScene");
     }
     res(key) {
         return this.loader.resources[key];
