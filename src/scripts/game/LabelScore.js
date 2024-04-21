@@ -1,5 +1,6 @@
 import * as PIXI from "pixi.js";
 import { App } from "../system/App";
+import {stats} from './Stats'
 
 export class LabelScore extends PIXI.Text {
     constructor() {
@@ -12,6 +13,6 @@ export class LabelScore extends PIXI.Text {
     }
 
     renderScore(score = 0) {
-        this.text = `Score: ${score}`;
+        this.text = `Score: ${stats.score}`;
     }
 }

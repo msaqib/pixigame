@@ -1,6 +1,5 @@
 import { Tools } from "../system/Tools";
 import { GameScene } from "./GameScene";
-import { Game } from "./Game";
 import { StartScene } from "./StartScene";
 
 export const Config = {
@@ -26,7 +25,8 @@ export const Config = {
             y: 95
         },
         jumpSpeed: 15,
-        maxJumps: 2
+        maxJumps: 2,
+        livesRemaining: 3
     },
     platforms: {
         ranges: {
@@ -47,6 +47,7 @@ export const Config = {
     },
     diamonds: {
         chance: 0.4,
+        score: 10,
         offset: {
             min: 100,
             max: 200

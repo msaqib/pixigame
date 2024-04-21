@@ -62,7 +62,7 @@ export class Hero {
             Matter.World.remove(App.physics.world, diamond.body)
             diamond.sprite.destroy()
             diamond.sprite = null
-            this.score += 10
+            this.score += App.config.diamonds.score
             this.sprite.emit("score")
             sound.play('collect')
         }

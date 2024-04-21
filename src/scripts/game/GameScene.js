@@ -6,9 +6,11 @@ import * as Matter from 'matter-js'
 import {App} from '../system/App'
 import { LabelScore } from "./LabelScore";
 import * as Tools from '../system/Tools'
+import {stats} from './Stats'
 
 export class GameScene extends Scene {
     create() {
+        stats.init()
         this.createBackground();
         this.createPlatforms()
         this.createHero()
@@ -56,7 +58,14 @@ export class GameScene extends Scene {
         const up = Tools.Tools.keyboard('ArrowUp')
         up.press = this.hero.startJump.bind(this.hero)
         this.hero.sprite.once('die', ()=> {
-            App.scenes.start('Game')
+            stats.livesRemaining--
+            if(stats.livesRemaining > 0) {
+                App.scenes.start('Game')
+            }
+            else {
+                stats.reset()
+                App.scenes.start('startScene')
+            }
         })
     }
 
@@ -64,7 +73,8 @@ export class GameScene extends Scene {
         this.labelScore = new LabelScore(this.hero.score);
         this.container.addChild(this.labelScore);
         this.hero.sprite.on("score", () => {
-            this.labelScore.renderScore(this.hero.score);
+            stats.score += App.config.diamonds.score
+            this.labelScore.renderScore(stats.score);
         });
     }
 
