@@ -15,8 +15,8 @@ export class Game extends Scene{
         // Create a sprite with the background image
         this.backgroundSprite = this.bg;
         
-        this.backgroundSprite.width = window.innerWidth
-        this.backgroundSprite.height = window.innerHeight
+        this.backgroundSprite.width = App.config.board.width //window.innerWidth
+        this.backgroundSprite.height = App.config.board.height//window.innerHeight
 
         this.container.addChild(this.backgroundSprite);
     }

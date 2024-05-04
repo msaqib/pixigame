@@ -33,7 +33,7 @@ export class Platforms {
     }
 
     update() {
-        if (this.current.container.x + this.current.container.width < window.innerWidth) {
+        if (this.current.container.x + this.current.container.width < App.config.board.width) {
             this.createPlatform(this.getRandomData());
         }
 

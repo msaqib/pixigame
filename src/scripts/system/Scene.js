@@ -1,6 +1,5 @@
 import * as PIXI from "pixi.js";
 import { App } from "./App";
-import * as Matter from 'matter-js'
 
 export class Scene {
     constructor() {

@@ -8,7 +8,7 @@ class Application {
         this.config = config;
         this.app = new PIXI.Application();
         this.config.stage = this.app.stage;
-        this.app.init({ width: 800, height: 600 }).then(()=> {
+        this.app.init({ width: this.config.board.width, height: this.config.board.height }).then(()=> {
             document.body.appendChild(this.app.canvas);
             this.loader = new Loader(this.config);
             this.soundLoader = new Loader(this.config)

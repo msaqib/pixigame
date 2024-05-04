@@ -1,9 +1,14 @@
 import { Tools } from "../system/Tools";
 import { GameScene } from "./GameScene";
 import { StartScene } from "./StartScene";
+import { GameOver } from "./GameOver";
 
 export const Config = {
     loader: Tools.importAll(require.context('./../../sprites', true, /\.(png|mp3)$/)),
+    board: {
+        width: 800,
+        height: 600
+    },
     bgSpeed: 2,
     score: {
         x: 10,
@@ -12,12 +17,24 @@ export const Config = {
         style: {
             fontFamily: "Verdana",
             fontWeight: "bold",
-            fontSize: 44
+            fontSize: 28
+        }
+    },
+
+    lives: {
+        x: 10,
+        y: 45,
+        anchor: 0,
+        style: {
+            fontFamily: "Verdana",
+            fontWeight: "bold",
+            fontSize: 18
         }
     },
     scenes: {
         "Game": GameScene,
-        "startScene": StartScene
+        "startScene": StartScene,
+        "gameOver": GameOver
     },
     hero: {
         position: {
@@ -31,16 +48,16 @@ export const Config = {
     platforms: {
         ranges: {
             rows: {
-                min: 3,
-                max: 6
+                min: 2,
+                max: 4
             },
             cols: {
                 min: 3,
-                max: 9
+                max: 7
             },
             offset: {
                 min: 80,
-                max: 200
+                max: 150
             }
         },
         moveSpeed: -1.5

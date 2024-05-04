@@ -38,17 +38,21 @@ export class Hero {
             this.sprite.x = this.body.position.x - this.sprite.width / 2
             this.sprite.y = this.body.position.y - this.sprite.height / 2
         }     
-        if (this.sprite && (this.sprite.position.y - window.innerHeight > 0.1)) {
+        if (this.sprite && (this.sprite.position.y - App.config.board.height > 0.1)) {
             this.sprite.emit("die");
         }   
     }
 
     startJump() {
-        
         if (this.jumpIndex < this.maxJumps) {
-            this.jumpIndex++
+            if (this.platform && this.sprite) {
+                // console.log(this.sprite, this.platform.gamePlatform)
+                if (this.platform.gamePlatform.container.y >= this.sprite.y)     {
+                    this.jumpIndex++
             Matter.Body.setVelocity(this.body, {x: 0, y: -this.dy})
             sound.play('jump')
+                }
+            }
         }
     }
 

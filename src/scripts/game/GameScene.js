@@ -7,6 +7,8 @@ import {App} from '../system/App'
 import { LabelScore } from "./LabelScore";
 import * as Tools from '../system/Tools'
 import {stats} from './Stats'
+import { GameOver } from "./GameOver";
+import { LivesScore } from "./LivesScore";
 
 export class GameScene extends Scene {
     create() {
@@ -63,8 +65,8 @@ export class GameScene extends Scene {
                 App.scenes.start('Game')
             }
             else {
+                App.scenes.start('gameOver')
                 stats.reset()
-                App.scenes.start('startScene')
             }
         })
     }
@@ -76,6 +78,8 @@ export class GameScene extends Scene {
             stats.score += App.config.diamonds.score
             this.labelScore.renderScore(stats.score);
         });
+        this.livesScore = new LivesScore(stats.livesRemaining)
+        this.container.addChild(this.livesScore)
     }
 
     destroy() {
