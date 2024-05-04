@@ -59,6 +59,7 @@ export class GameScene extends Scene {
         this.container.interactive = true
         const up = Tools.Tools.keyboard('ArrowUp')
         up.press = this.hero.startJump.bind(this.hero)
+        const tap = Tools.Tools.tap(this.hero.startJump.bind(this.hero))
         this.hero.sprite.once('die', ()=> {
             stats.livesRemaining--
             if(stats.livesRemaining > 0) {

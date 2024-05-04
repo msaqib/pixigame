@@ -2,6 +2,10 @@ export class Tools {
     static importAll(r) {
         return r.keys().map(key => r(key))
     }
+
+    static tap(handler) {
+      app.stage.on("tap", handler);
+    }
    
     static keyboard(value) {
         const key = {};
