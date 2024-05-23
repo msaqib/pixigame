@@ -47,7 +47,7 @@ export class GameScene extends Scene {
         super.update(dt)
         this.bg.update(dt.deltaTime);
         this.platforms.update()
-        this.container.pivot.x = this.hero.sprite.x - 200
+        this.container.pivot.x = this.hero.sprite.x - App.config.hero.position.x
     }
 
     createPlatforms(data) {
