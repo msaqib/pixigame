@@ -18,6 +18,7 @@ export class GameScene extends Scene {
         this.createHero()
         this.registerEvents()
         this.createUI()
+        this.heroX = App.config.hero.position.x
     }
 
     registerEvents() {
@@ -45,7 +46,8 @@ export class GameScene extends Scene {
     update(dt) {
         super.update(dt)
         this.bg.update(dt.deltaTime);
-        this.platforms.update(dt)
+        this.platforms.update()
+        this.container.pivot.x = this.hero.sprite.x - 200
     }
 
     createPlatforms(data) {
@@ -61,7 +63,6 @@ export class GameScene extends Scene {
         up.press = this.hero.startJump.bind(this.hero)
         App.app.stage.eventMode = 'static';
         App.app.stage.addEventListener('pointerdown', this.hero.startJump.bind(this.hero));
-        //app.stage.on("click", this.hero.startJump.bind(this.hero));
         this.hero.sprite.once('die', ()=> {
             stats.livesRemaining--
             if(stats.livesRemaining > 0) {

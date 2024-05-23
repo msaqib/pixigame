@@ -36,7 +36,6 @@ export class Platforms {
         if (this.current.container.x + this.current.container.width < App.config.board.width) {
             this.createPlatform(this.getRandomData());
         }
-
         this.platforms.forEach(platform => platform.move());
     }
 

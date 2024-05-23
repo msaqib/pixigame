@@ -1,7 +1,6 @@
 import { Scene } from '../system/Scene';
 import {App} from '../system/App'
 import * as PIXI from "pixi.js";
-import {stats} from './Stats'
 
 export class GameOver extends Scene {
     create() {

@@ -46,11 +46,10 @@ export class Hero {
     startJump() {
         if (this.jumpIndex < this.maxJumps) {
             if (this.platform && this.sprite) {
-                // console.log(this.sprite, this.platform.gamePlatform)
                 if (this.platform.gamePlatform.container.y >= this.sprite.y)     {
                     this.jumpIndex++
-            Matter.Body.setVelocity(this.body, {x: 0, y: -this.dy})
-            sound.play('jump')
+                    Matter.Body.setVelocity(this.body, {x: 0, y: -this.dy})
+                    sound.play('jump')
                 }
             }
         }

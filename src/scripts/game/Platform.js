@@ -50,7 +50,7 @@ export class Platform {
         this.body.gamePlatform = this
     }
 
-    move() {
+    move(adjust) {
         if (this.body) {
             Matter.Body.setPosition(this.body, {x: this.body.position.x + this.dx, y: this.body.position.y})
             this.container.x = this.body.position.x - this.width / 2
