@@ -41,15 +41,15 @@ export const Config = {
             x: 200,
             y: 95
         },
-        jumpSpeed: 15,
+        jumpSpeed: 12,
         maxJumps: 2,
         livesRemaining: 3
     },
     platforms: {
         ranges: {
             rows: {
-                min: 2,
-                max: 4
+                min: 1,
+                max: 3
             },
             cols: {
                 min: 3,

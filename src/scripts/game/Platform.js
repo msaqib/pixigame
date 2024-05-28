@@ -22,6 +22,7 @@ export class Platform {
         this.container = new PIXI.Container();
         this.container.x = x;
         this.container.y = App.config.board.height - this.height;
+        // this.container.scale = 0.5
     }
 
     createTiles() {
