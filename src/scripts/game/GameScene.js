@@ -47,7 +47,12 @@ export class GameScene extends Scene {
         super.update(dt)
         this.bg.update(dt.deltaTime);
         this.platforms.update()
+        const scorePosition = this.container.toGlobal(this.labelScore.position)
+        const livesPosition = this.container.toGlobal(this.livesScore.position)
         this.container.pivot.x = this.hero.sprite.x - App.config.hero.position.x
+        const newPosition = this.container.toLocal(scorePosition)
+        this.labelScore.x = this.container.toLocal(scorePosition).x
+        this.livesScore.x = this.container.toLocal(livesPosition).x
     }
 
     createPlatforms(data) {
