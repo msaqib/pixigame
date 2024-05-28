@@ -10,7 +10,7 @@ export class Background {
     createSprites() {
         this.sprites = [];
 
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 4; i++) {
             this.createSprite(i);
         }
     }
@@ -18,7 +18,7 @@ export class Background {
     createSprite(i) {
         const sprite = App.sprite("bg");
 
-        sprite.x = sprite.width * i;
+        sprite.x = sprite.width * (i-1);
         sprite.y = 0;
         this.container.addChild(sprite);
         this.sprites.push(sprite);
@@ -27,7 +27,7 @@ export class Background {
     move(sprite, offset) {
         const spriteRightX = sprite.x + sprite.width;
 
-        const screenLeftX  = 0;
+        const screenLeftX  = -sprite.width;
 
         if (spriteRightX <= screenLeftX) {
             sprite.x += sprite.width * this.sprites.length;
